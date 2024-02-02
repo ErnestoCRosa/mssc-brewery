@@ -5,6 +5,7 @@ import guru.springframework.msscbrewery.web.model.CustomerDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +22,8 @@ public class CostumerController {
     }
 
     @GetMapping({"/{customerID}"})
-    public ResponseEntity<CustomerDTO> getCustomer(UUID customerID){
-        return new ResponseEntity<>(customerService.getCustomerByID(customerID), HttpStatus.OK);
+    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable("customerID") UUID customerID){
+        return new ResponseEntity<>(customerService.getCustomerByID(UUID.randomUUID()), HttpStatus.OK);
     }
 
 }
