@@ -1,6 +1,7 @@
 package erosa.springframework.msscbrewery.services;
 
 import erosa.springframework.msscbrewery.web.model.BeerDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -8,6 +9,8 @@ import java.util.UUID;
 /**
  * Created by jt on 2019-04-20.
  */
+
+@Slf4j
 @Service
 public class BeerServiceImpl implements BeerService {
     @Override
@@ -28,11 +31,13 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public void updateBeer(UUID beerId, BeerDto beerDto) {
         //TODO connection to backend
+        log.debug("Beer updating");
     }
 
     @Override
     public void deleteById(UUID beerID) {
         //TODO connection to backend
+        log.debug("Beer deleted");
 
     }
 }
