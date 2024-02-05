@@ -1,7 +1,7 @@
-package guru.springframework.msscbrewery.services;
+package erosa.springframework.msscbrewery.services;
 
 
-import guru.springframework.msscbrewery.web.model.CustomerDTO;
+import erosa.springframework.msscbrewery.web.model.CustomerDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

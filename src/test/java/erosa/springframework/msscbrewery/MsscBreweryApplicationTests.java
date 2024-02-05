@@ -1,4 +1,4 @@
-package guru.springframework.msscbrewery;
+package erosa.springframework.msscbrewery;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

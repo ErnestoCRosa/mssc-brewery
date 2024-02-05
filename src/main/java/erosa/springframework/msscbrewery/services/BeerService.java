@@ -1,6 +1,6 @@
-package guru.springframework.msscbrewery.services;
+package erosa.springframework.msscbrewery.services;
 
-import guru.springframework.msscbrewery.web.model.BeerDto;
+import erosa.springframework.msscbrewery.web.model.BeerDto;
 
 import java.util.UUID;
 

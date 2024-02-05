@@ -1,11 +1,7 @@
-package guru.springframework.msscbrewery.web.controller;
+package erosa.springframework.msscbrewery.web.controller;
 
-import guru.springframework.msscbrewery.services.BeerService;
-import guru.springframework.msscbrewery.web.model.BeerDto;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import erosa.springframework.msscbrewery.services.BeerService;
+import erosa.springframework.msscbrewery.web.model.BeerDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

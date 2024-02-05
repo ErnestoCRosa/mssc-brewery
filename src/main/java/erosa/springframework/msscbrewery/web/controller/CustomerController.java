@@ -1,7 +1,7 @@
-package guru.springframework.msscbrewery.web.controller;
+package erosa.springframework.msscbrewery.web.controller;
 
-import guru.springframework.msscbrewery.services.CustomerService;
-import guru.springframework.msscbrewery.web.model.CustomerDTO;
+import erosa.springframework.msscbrewery.services.CustomerService;
+import erosa.springframework.msscbrewery.web.model.CustomerDTO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
