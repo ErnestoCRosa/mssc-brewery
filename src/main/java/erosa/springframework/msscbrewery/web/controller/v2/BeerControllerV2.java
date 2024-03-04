@@ -8,10 +8,17 @@ import erosa.springframework.msscbrewery.web.model.v2.BeerDtoV2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+@Validated
 @RequestMapping("/api/v2/beer")
 @RestController
 public class BeerControllerV2 {
@@ -23,7 +30,7 @@ public class BeerControllerV2 {
     }
 
     @GetMapping({"/{beerId}"})
-    public ResponseEntity<BeerDtoV2> getBeer(@PathVariable("beerId") UUID beerId) {
+    public ResponseEntity<BeerDtoV2> getBeer(@NotNull @PathVariable("beerId") UUID beerId) {
 
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
@@ -31,7 +38,7 @@ public class BeerControllerV2 {
 
     //using response entity to customize the header before returning
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody BeerDtoV2 beerDto){
+    public ResponseEntity handlePost(@Valid @NotNull @RequestBody BeerDtoV2 beerDto){
 
         BeerDtoV2 savedDto = beerService.saveNewBeer(beerDto);
         HttpHeaders header = new HttpHeaders();
@@ -43,7 +50,7 @@ public class BeerControllerV2 {
 
     //returning the http code through the response entity
     @PutMapping({"/{beerid}"})
-    public ResponseEntity handleUpdate(@PathVariable("beerid") UUID beerId, @RequestBody BeerDtoV2 beerDto){
+    public ResponseEntity handleUpdate(@PathVariable("beerid") UUID beerId, @Valid @NotNull @RequestBody BeerDtoV2 beerDto){
 
         beerService.updateBeer(beerId,beerDto);
 
@@ -54,9 +61,20 @@ public class BeerControllerV2 {
     //returning the http code through anotation
     @DeleteMapping({"/{beerid}"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBeer(@PathVariable("beerid") UUID beerID){
+    public void deleteBeer(@NotNull @PathVariable("beerid") UUID beerID){
         beerService.deleteById(beerID);
 
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException e){
+        List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
+
+        e.getConstraintViolations().forEach(constraintViolation -> {
+            errors.add(constraintViolation.getPropertyPath() + " : " + constraintViolation.getMessage());
+        });
+
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
 }
